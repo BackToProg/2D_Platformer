@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private SpriteRenderer _playerSpriteRenderer;
     [SerializeField] private Rigidbody2D _rigidbody;
-    [SerializeField] private PlayerAnimations _playerAnimations;
+    [SerializeField] private PlayerAnimator _playerAnimator;
     [SerializeField] private float _jumpForce;
     [SerializeField] private BoxCollider2D[] _groundColliders;
 
@@ -25,12 +25,12 @@ public class PlayerMovement : MonoBehaviour
             if (_isGrounded)
             {
                 Jump();
-                _playerAnimations.ActivateJumpAnimation();
+                _playerAnimator.ActivateJumpAnimation();
             }
         }
 
-        _playerAnimations.ActivateWalkAnimation(_isMoving);
-        _playerAnimations.ActivateJFallAnimation(IsFlying());
+        _playerAnimator.ActivateWalkAnimation(_isMoving);
+        _playerAnimator.ActivateJFallAnimation(IsFlying());
     }
 
     private void Jump()

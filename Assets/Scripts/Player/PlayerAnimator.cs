@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimations : MonoBehaviour
+public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
 
@@ -14,15 +13,9 @@ public class PlayerAnimations : MonoBehaviour
     private static readonly int Jump = Animator.StringToHash("Jump");
     private static readonly int IsFlying = Animator.StringToHash("IsFlying");
 
-    private void Update()
-    {
-        _animator.SetBool(IsWalk, _isWalk);
-        _animator.SetBool(IsFlying, _isFlying);
-    }
-
     public void ActivateWalkAnimation(bool isAnimationActive)
     {
-        _isWalk = isAnimationActive;
+        _animator.SetBool(IsWalk, isAnimationActive);
     }
 
     public void ActivateJumpAnimation()
@@ -32,6 +25,6 @@ public class PlayerAnimations : MonoBehaviour
     
     public void ActivateJFallAnimation(bool isAnimationActive)
     {
-        _isFlying = isAnimationActive;
+        _animator.SetBool(IsFlying, isAnimationActive);
     }
 }

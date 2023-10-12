@@ -17,6 +17,6 @@ public class AppleSpawner : MonoBehaviour
 
     private void SpawnApple(Transform spawnPoint)
     {
-        Instantiate(_apple, new Vector2(spawnPoint.position.x, spawnPoint.position.y), spawnPoint.rotation);
+        Instantiate(_apple, spawnPoint.position, spawnPoint.rotation);
     }
 }

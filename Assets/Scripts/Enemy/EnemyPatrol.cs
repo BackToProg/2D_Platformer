@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyPatrol : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Transform _path;
     [SerializeField] private SpriteRenderer _enemySpriteRenderer;
-    [SerializeField] private EnemyAnimations _enemyAnimations;
+    [SerializeField] private EnemyAnimator _enemyAnimator;
 
     private Transform[] _movementPoints;
     private int _currentPoint;
@@ -30,7 +31,7 @@ public class EnemyPatrol : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
         float distance = Vector2.Distance(transform.position, target.position);
-        _enemyAnimations.ActivateWalkAnimation(true);
+        _enemyAnimator.ActivateWalkAnimation(true);
 
         _enemySpriteRenderer.flipX = target.position.x < transform.position.x;
 

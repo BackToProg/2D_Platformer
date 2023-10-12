@@ -487,7 +487,7 @@ MonoBehaviour:
   _speed: 3
   _path: {fileID: 563036404}
   _enemySpriteRenderer: {fileID: 1219702608}
-  _enemyAnimations: {fileID: 1219702610}
+  _enemyAnimator: {fileID: 1219702610}
 --- !u!1001 &324637941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 769517837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94f09fc1e452040b48c7e9cc05af5214, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ce4a37e0f6f249099b83106398491e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 769517839}
@@ -2275,7 +2275,7 @@ MonoBehaviour:
   _speed: 2
   _playerSpriteRenderer: {fileID: 769517840}
   _rigidbody: {fileID: 983911485}
-  _playerAnimations: {fileID: 769517841}
+  _playerAnimator: {fileID: 769517841}
   _jumpForce: 6
   _groundColliders:
   - {fileID: 422492739}
@@ -2304,7 +2304,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1519664112458418487, guid: cd88cddf296604c4a85268342233a582, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.62
+      value: 5.14
       objectReference: {fileID: 0}
     - target: {fileID: 1519664112458418487, guid: cd88cddf296604c4a85268342233a582, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2672,7 +2672,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1219702606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1585ff147c6d74bac93146c5a2e984ff, type: 3}
+  m_Script: {fileID: 11500000, guid: ac35cf797e2a3469f80e35850a7fc6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1219702609}
