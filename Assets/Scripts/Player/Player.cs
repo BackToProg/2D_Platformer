@@ -1,22 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Base;
 
-public class Player : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private int _health;
-    [SerializeField] private int _damage;
-    [SerializeField] private float _attackDistance;
-    [SerializeField] private int _attackSpeed;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    public class Player : Person
+    {
+        public void Heal(int healValue) => IncreaseHealthValue(healValue);
 
-    public int Health() => _health;
+        public int InitialHealth { get; private set; }
 
-    public int Damage() => _damage;
+        private void Awake()
+        {
+            InitialHealth = Health;
+        }
 
-    public float AttackDistance() => _attackDistance;
-
-    public int AttackSpeed() => _attackSpeed;
-
-    public SpriteRenderer GetPlayerSpriteRenderer() => _spriteRenderer;
+    }
 }

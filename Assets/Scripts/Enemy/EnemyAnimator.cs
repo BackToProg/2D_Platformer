@@ -1,16 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimator : MonoBehaviour
+namespace Enemy
 {
-    [SerializeField] private Animator _animator;
-    
-    private bool _isWalk;
-    private static readonly int IsWalk = Animator.StringToHash("IsWalk");
-    
-    public void ActivateWalkAnimation(bool isAnimationActive)
+    public class EnemyAnimator : MonoBehaviour
     {
-        _animator.SetBool(IsWalk, isAnimationActive);
+        [SerializeField] private Animator _animator;
+    
+        private bool _isWalk;
+        private static readonly int IsWalk = Animator.StringToHash("IsWalk");
+        private static readonly int Hit = Animator.StringToHash("Hit");
+
+        public void ActivateWalkAnimation(bool isAnimationActive)
+        {
+            _animator.SetBool(IsWalk, isAnimationActive);
+        }
+    
+        public void ActivateHitAnimation()
+        {
+            _animator.SetTrigger(Hit);
+        }
     }
 }

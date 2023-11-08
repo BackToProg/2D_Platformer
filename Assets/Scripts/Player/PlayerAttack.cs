@@ -1,22 +1,25 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
+using Dust;
+using Enemy;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+namespace Player
 {
-   [SerializeField] private Player _player;
-   [SerializeField] private Dust _dust;
-
-   private bool _isAttackCoroutineRunning;
-   
-   private void Update()
-   {
-       if (Input.GetMouseButtonDown(0))
-       {
-           Dust newDust = Instantiate(_dust, transform.position, transform.rotation);
-           newDust.GetMoveDirection(_player.GetPlayerSpriteRenderer().flipX);
-       }
-   }
+    public class PlayerAttack : MonoBehaviour
+    {
+        [SerializeField] private Player _player;
+        [SerializeField] private PlayerAnimator _playerAnimator;
+        [SerializeField] private Enemy.Enemy _enemy;
+        [SerializeField] private EnemyAnimator _enemyAnimator;
+        [SerializeField] private DustSpawner _dustSpawner;
+    
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Dust.Dust newDust = _dustSpawner.Spawn(_player.transform, _player.SpriteRenderer.flipX);
+                newDust.Init(_enemy, _player, _playerAnimator, _enemyAnimator);
+                newDust.DefineMoveDirection(_player.SpriteRenderer.flipX);
+            }
+        }
+    }
 }

@@ -1,23 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using Base;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+namespace Enemy
 {
-    [SerializeField] private int _health;
-    [SerializeField] private int _damage;
-    [SerializeField] private float _attackDistance;
-    [SerializeField] private int _attackSpeed;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    public class Enemy : Person
+    {
+        [SerializeField] private float _attackDistance;
+        [SerializeField] private int _attackSpeed;
+        [SerializeField] private int _chaseDistance;
+        [SerializeField] private float _chaseSpeed;
 
-    public int Health() => _health;
-
-    public int Damage() => _damage;
-
-    public float AttackDistance() => _attackDistance;
-
-    public int AttackSpeed() => _attackSpeed;
-
-    public SpriteRenderer GetPlayerSpriteRenderer() => _spriteRenderer;
+        public float AttackDistance() => _attackDistance;
     
+        public float ChaseSpeed() => _chaseSpeed;
+
+        public float ChaseDistance() => _chaseDistance;
+
+        public int AttackSpeed() => _attackSpeed;
+
+    }
 }

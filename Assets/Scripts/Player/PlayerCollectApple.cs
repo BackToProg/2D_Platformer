@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using Enviroment;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
-public class PlayerCollectApple : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private ScoreManager _scoreManager;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class PlayerCollectApple : MonoBehaviour
     {
-        if (collision.TryGetComponent(out Apple apple))
+        [SerializeField] private ScoreManager _scoreManager;
+        [SerializeField] private Player _player;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            Destroy(apple.gameObject);
-            _scoreManager.IncreaseScore();
+            if (collision.TryGetComponent(out Apple apple) && _player.InitialHealth != _player.Health)
+            {
+                _player.Heal(apple.HealValue);
+                Destroy(apple.gameObject);
+                _scoreManager.IncreaseScore();
+            }
         }
     }
 }

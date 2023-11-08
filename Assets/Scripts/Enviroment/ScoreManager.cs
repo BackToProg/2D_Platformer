@@ -1,22 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+namespace Enviroment
 {
-    [SerializeField] private TextMeshProUGUI _scoreText;
-    
-    private int _score;
-
-    public void IncreaseScore()
+    public class ScoreManager : MonoBehaviour
     {
-        _score += 1;
-    }
+        [SerializeField] private TextMeshProUGUI _scoreText;
 
-    private void Update()
-    {
-        _scoreText.text = $"X{_score}";
+        private int _score;
+
+        public void IncreaseScore()
+        {
+            _score += 1;
+        }
+
+        private void Update()
+        {
+            _scoreText.text = $"X{_score}";
+        }
     }
 }

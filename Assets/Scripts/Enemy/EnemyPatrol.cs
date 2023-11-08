@@ -1,48 +1,87 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class EnemyPatrol : MonoBehaviour
+namespace Enemy
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private Transform _path;
-    [SerializeField] private SpriteRenderer _enemySpriteRenderer;
-    [SerializeField] private EnemyAnimator _enemyAnimator;
-
-    private Transform[] _movementPoints;
-    private int _currentPoint;
-    private readonly float _patrolPointDistance = 0.01f;
-
-    private void Start()
+    public class EnemyPatrol : MonoBehaviour
     {
-        _movementPoints = new Transform[_path.childCount];
+        [SerializeField] private Transform _path;
+        [SerializeField] private SpriteRenderer _enemySpriteRenderer;
+        [SerializeField] private EnemyAnimator _enemyAnimator;
+        [SerializeField] private Enemy _enemy;
+        [SerializeField] private Player.Player _player;
 
-        for (int i = 0; i < _path.childCount; i++)
+        private Transform[] _movementPoints;
+        private int _currentPoint;
+        private readonly float _patrolPointDistance = 0.01f;
+        private readonly float _chaseDistanceY = 0.8f;
+
+        private void Start()
         {
-            _movementPoints[i] = _path.GetChild(i).transform;
-        }
-    }
+            _movementPoints = new Transform[_path.childCount];
 
-    private void Update()
-    {
-        Transform target = _movementPoints[_currentPoint];
-
-        transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
-        float distance = Vector2.Distance(transform.position, target.position);
-        _enemyAnimator.ActivateWalkAnimation(true);
-
-        _enemySpriteRenderer.flipX = target.position.x < transform.position.x;
-
-        if (distance < _patrolPointDistance)
-        {
-            _currentPoint++;
-
-            if (_currentPoint >= _movementPoints.Length)
+            for (int i = 0; i < _path.childCount; i++)
             {
-                _currentPoint = 0;
+                _movementPoints[i] = _path.GetChild(i).transform;
             }
         }
+
+        private void Update()
+        {
+            if (IsChasePossible())
+            {
+                Chase();
+            }
+            else
+            {
+                Patrol();
+            }
+        }
+
+        private void Patrol()
+        {
+            Transform target = _movementPoints[_currentPoint];
+
+            transform.position = Vector2.MoveTowards(transform.position, target.position, _enemy.Speed * Time.deltaTime);
+            float distance = Vector2.Distance(transform.position, target.position);
+            _enemyAnimator.ActivateWalkAnimation(true);
+
+            _enemySpriteRenderer.flipX = IsFlipX(target);
+
+            if (distance < _patrolPointDistance)
+            {
+                _currentPoint++;
+
+                if (_currentPoint >= _movementPoints.Length)
+                {
+                    _currentPoint = 0;
+                }
+            }
+        }
+
+        private void Chase()
+        {
+            _enemySpriteRenderer.flipX = IsFlipX(_player.transform);
+            transform.position =
+                Vector2.MoveTowards(transform.position, _player.transform.position, _enemy.ChaseSpeed() * Time.deltaTime);
+        }
+
+        private bool IsChasePossible()
+        {
+            bool isPossible = false;
+            float distanceX = Vector2.Distance(transform.position, _player.transform.position);
+            float distanceY = Math.Abs(transform.position.y - _player.transform.position.y);
+        
+            if (distanceX <= _enemy.ChaseDistance() && distanceY <= _chaseDistanceY)
+            {
+                isPossible = true;
+            }
+
+            return isPossible;
+        }
+
+        private bool IsFlipX(Transform target) => target.position.x < transform.position.x;
+       
+
     }
 }

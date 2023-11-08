@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AppleSpawnPoint : MonoBehaviour
+namespace Enviroment
 {
+    public class AppleSpawnPoint : MonoBehaviour
+    {
+    }
 }

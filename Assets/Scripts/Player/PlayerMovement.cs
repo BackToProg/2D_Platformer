@@ -1,96 +1,96 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private SpriteRenderer _playerSpriteRenderer;
-    [SerializeField] private Rigidbody2D _rigidbody;
-    [SerializeField] private PlayerAnimator _playerAnimator;
-    [SerializeField] private float _jumpForce;
-    [SerializeField] private BoxCollider2D[] _groundColliders;
-
-    private Vector3 _direction;
-    private bool _isMoving = true;
-    private bool _isGrounded;
-
-    private void Update()
+    public class PlayerMovement : MonoBehaviour
     {
-        _isMoving = Move();
-        CheckGroundTouch();
+        [SerializeField] private Player _player;
+        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private PlayerAnimator _playerAnimator;
+        [SerializeField] private float _jumpForce;
+        [SerializeField] private BoxCollider2D[] _groundColliders;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        private Vector3 _direction;
+        private bool _isMoving = true;
+        private bool _isGrounded;
+
+        private void Update()
         {
-            if (_isGrounded)
+            _isMoving = Move();
+            CheckGroundTouch();
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                Jump();
-                _playerAnimator.ActivateJumpAnimation();
-            }
-        }
-
-        _playerAnimator.ActivateWalkAnimation(_isMoving);
-        _playerAnimator.ActivateJFallAnimation(IsFlying());
-    }
-
-    private void Jump()
-    {
-        _rigidbody.AddForce(transform.up * _jumpForce, ForceMode2D.Impulse);
-    }
-    
-    private void CheckGroundTouch()
-    {
-        float rayLenght = 0.3f;
-        Vector2 rayStartPosition = transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(rayStartPosition, rayStartPosition + Vector2.down, rayLenght);
-
-        if (hit.collider != null)
-        {
-            foreach (var groundCollider in _groundColliders)
-            {
-                _isGrounded = hit.collider.IsTouching(groundCollider);
-
                 if (_isGrounded)
                 {
-                    break;
+                    Jump();
+                    _playerAnimator.ActivateJumpAnimation();
                 }
             }
+
+            _playerAnimator.ActivateWalkAnimation(_isMoving);
+            _playerAnimator.ActivateJFallAnimation(IsFlying());
         }
-        else
+
+        private void Jump()
         {
-            _isGrounded = false;
+            _rigidbody.AddForce(transform.up * _jumpForce, ForceMode2D.Impulse);
         }
-    }
 
-    private bool IsFlying()
-    {
-        bool isFlying;
-
-        if (_rigidbody.velocity.y < 0)
+        private void CheckGroundTouch()
         {
-            isFlying = true;
+            float rayLenght = 0.3f;
+            Vector2 rayStartPosition = transform.position;
+            RaycastHit2D hit = Physics2D.Raycast(rayStartPosition, rayStartPosition + Vector2.down, rayLenght);
+
+            if (hit.collider != null)
+            {
+                foreach (var groundCollider in _groundColliders)
+                {
+                    _isGrounded = hit.collider.IsTouching(groundCollider);
+
+                    if (_isGrounded)
+                    {
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                _isGrounded = false;
+            }
         }
-        else
+
+        private bool IsFlying()
         {
-            isFlying = false;
+            bool isFlying;
+
+            if (_rigidbody.velocity.y < 0)
+            {
+                isFlying = true;
+            }
+            else
+            {
+                isFlying = false;
+            }
+
+            return isFlying;
         }
 
-        return isFlying;
-    }
-
-    private bool Move()
-    {
-        bool isMove = false;
-
-        _direction = new Vector2(Input.GetAxis("Horizontal"), 0);
-        transform.position += _direction * (_speed * Time.deltaTime);
-
-        if (_direction.x != 0)
+        private bool Move()
         {
-            _playerSpriteRenderer.flipX = !(_direction.x > 0);
-            isMove = true;
-        }
+            bool isMove = false;
 
-        return isMove;
+            _direction = new Vector2(Input.GetAxis("Horizontal"), 0);
+            transform.position += _direction * (_player.Speed * Time.deltaTime);
+
+            if (_direction.x != 0)
+            {
+                _player.SpriteRenderer.flipX = !(_direction.x > 0);
+                isMove = true;
+            }
+
+            return isMove;
+        }
     }
 }

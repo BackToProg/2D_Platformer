@@ -1,43 +1,51 @@
 using System.Collections;
-using System.Collections.Generic;
+using Dust;
+using Player;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+namespace Enemy
 {
-    [SerializeField] private Enemy _enemy;
-    [SerializeField] private Player _player;
-    [SerializeField] private Dust _dust;
+    public class EnemyAttack : MonoBehaviour
+    {
+        [SerializeField] private Enemy _enemy;
+        [SerializeField] private EnemyAnimator _enemyAnimator;
+        [SerializeField] private Player.Player _player;
+        [SerializeField] private PlayerAnimator _playerAnimator;
+        [SerializeField] private DustSpawner _dustSpawner;
 
-    private bool _isAttackCoroutineRunning;
+        private bool _isAttackCoroutineRunning;
    
-    private void Update()
-    {
-        if (IsAttackPossible() && _isAttackCoroutineRunning == false)
+        private void Update()
         {
-            StartCoroutine(Shoot());
+            if (IsAttackPossible() && _isAttackCoroutineRunning == false)
+            {
+                StartCoroutine(Shoot());
+            }
+            else
+            {
+                StopCoroutine(Shoot());
+            }
         }
-        else
+
+        private IEnumerator Shoot()
         {
-            StopCoroutine(Shoot());
+            WaitForSeconds waitForSeconds = new WaitForSeconds(_enemy.AttackSpeed());
+            _isAttackCoroutineRunning = true;
+
+            while (IsAttackPossible())
+            {
+                Dust.Dust newDust = _dustSpawner.Spawn(_enemy.transform, _enemy.SpriteRenderer.flipX);
+                newDust.Init(_enemy, _player, _playerAnimator, _enemyAnimator);
+                newDust.DefineMoveDirection(_enemy.SpriteRenderer.flipX);
+
+                yield return waitForSeconds;
+            }
+        
+            _isAttackCoroutineRunning = false;
         }
+
+        private bool IsAttackPossible() =>
+            Vector2.Distance(transform.position, _player.transform.position) <= _enemy.AttackDistance();
+
     }
-
-    private IEnumerator Shoot()
-    {
-        WaitForSeconds waitForSeconds = new WaitForSeconds(_enemy.AttackSpeed());
-        _isAttackCoroutineRunning = true;
-
-        while (IsAttackPossible())
-        {
-            Dust newDust = Instantiate(_dust, transform.position, transform.rotation);
-            newDust.GetMoveDirection(_enemy.GetPlayerSpriteRenderer().flipX);
-
-            yield return waitForSeconds;
-        }
-
-        _isAttackCoroutineRunning = false;
-    }
-
-    private bool IsAttackPossible() => Vector2.Distance(transform.position, _player.transform.position) <= _enemy.AttackDistance();
-
 }

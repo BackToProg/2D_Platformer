@@ -1,8 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
-public class Apple : MonoBehaviour
+namespace Enviroment
 {
+    public class Apple : MonoBehaviour
+    {
+        [SerializeField] private int _healValue;
+
+        public int HealValue => _healValue;
+    }
 }
