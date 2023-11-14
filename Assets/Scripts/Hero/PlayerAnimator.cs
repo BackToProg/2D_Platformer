@@ -1,18 +1,18 @@
 using UnityEngine;
 
-namespace Player
+namespace Hero
 {
     public class PlayerAnimator : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
-
-        private bool _isWalk;
-        private bool _isFlying;
-    
+        
         private static readonly int IsWalk = Animator.StringToHash("IsWalk");
         private static readonly int Jump = Animator.StringToHash("Jump");
         private static readonly int IsFlying = Animator.StringToHash("IsFlying");
         private static readonly int Hit = Animator.StringToHash("Hit");
+        
+        private bool _isWalk;
+        private bool _isFlying;
 
         public void ActivateWalkAnimation(bool isAnimationActive)
         {

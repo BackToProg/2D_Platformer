@@ -1,6 +1,6 @@
 using Base;
 
-namespace Player
+namespace Hero
 {
     public class Player : Person
     {

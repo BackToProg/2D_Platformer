@@ -1,7 +1,7 @@
 using Enviroment;
 using UnityEngine;
 
-namespace Player
+namespace Hero
 {
     public class PlayerCollectApple : MonoBehaviour
     {

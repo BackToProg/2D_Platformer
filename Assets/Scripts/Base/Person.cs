@@ -7,11 +7,7 @@ namespace Base
         [SerializeField] protected int _health;
         [SerializeField] protected int _damage;
         [SerializeField] protected SpriteRenderer _spriteRenderer;
-        [SerializeField] protected float _movementSpeed;
-
-        public void TakeDamage(int damage) => _health -= damage;
-
-        protected void IncreaseHealthValue(int healValue) => _health += healValue;
+        [SerializeField] protected float movementMovementSpeed;
 
         public SpriteRenderer SpriteRenderer => _spriteRenderer;
 
@@ -19,13 +15,17 @@ namespace Base
 
         public int Health => _health;
 
-        public float Speed => _movementSpeed;
+        public float MovementSpeed => movementMovementSpeed;
 
         public bool IsAlive => _health >= 0;
-
+        
+        public void TakeDamage(int damage) => _health -= damage;
+        
         public void Destroy()
         {
             Destroy(gameObject);
         }
+
+        protected void IncreaseHealthValue(int healValue) => _health += healValue;
     }
 }

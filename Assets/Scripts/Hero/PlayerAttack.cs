@@ -1,14 +1,14 @@
 using Dust;
-using Enemy;
+using Rival;
 using UnityEngine;
 
-namespace Player
+namespace Hero
 {
     public class PlayerAttack : MonoBehaviour
     {
         [SerializeField] private Player _player;
         [SerializeField] private PlayerAnimator _playerAnimator;
-        [SerializeField] private Enemy.Enemy _enemy;
+        [SerializeField] private Enemy _enemy;
         [SerializeField] private EnemyAnimator _enemyAnimator;
         [SerializeField] private DustSpawner _dustSpawner;
     

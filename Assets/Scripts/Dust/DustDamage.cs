@@ -1,17 +1,17 @@
-using Enemy;
-using Player;
+using Hero;
+using Rival;
 using UnityEngine;
 
 namespace Dust
 {
     public class DustDamage : MonoBehaviour
     {
-        private Enemy.Enemy _enemy;
-        private Player.Player _player;
+        private Enemy _enemy;
+        private Player _player;
         private PlayerAnimator _playerAnimator;
         private EnemyAnimator _enemyAnimator;
 
-        public void Init(Enemy.Enemy enemy, Player.Player player, PlayerAnimator playerAnimator, EnemyAnimator enemyAnimator)
+        public void Init(Enemy enemy, Player player, PlayerAnimator playerAnimator, EnemyAnimator enemyAnimator)
         {
             _enemy = enemy;
             _player = player;
@@ -21,7 +21,7 @@ namespace Dust
     
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent(out Enemy.Enemy enemy))
+            if (collision.TryGetComponent(out Rival.Enemy enemy))
             {
                 enemy.TakeDamage(_player.Damage);
                 _enemyAnimator.ActivateHitAnimation();
@@ -33,7 +33,7 @@ namespace Dust
             
             }
         
-            if (collision.TryGetComponent(out Player.Player player))
+            if (collision.TryGetComponent(out Hero.Player player))
             {
                 player.TakeDamage(_enemy.Damage);
                 _playerAnimator.ActivateHitAnimation();

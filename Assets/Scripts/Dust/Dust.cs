@@ -1,5 +1,5 @@
-using Enemy;
-using Player;
+using Hero;
+using Rival;
 using UnityEngine;
 
 namespace Dust
@@ -20,7 +20,7 @@ namespace Dust
             _objectFlip = objectFlip;
         }
 
-        public void Init(Enemy.Enemy enemy, Player.Player player, PlayerAnimator playerAnimator, EnemyAnimator enemyAnimator)
+        public void Init(Enemy enemy, Player player, PlayerAnimator playerAnimator, EnemyAnimator enemyAnimator)
         {
             _damage.Init(enemy, player, playerAnimator, enemyAnimator);
         }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player
+namespace Hero
 {
     public class PlayerMovement : MonoBehaviour
     {
@@ -82,7 +82,7 @@ namespace Player
             bool isMove = false;
 
             _direction = new Vector2(Input.GetAxis("Horizontal"), 0);
-            transform.position += _direction * (_player.Speed * Time.deltaTime);
+            transform.position += _direction * (_player.MovementSpeed * Time.deltaTime);
 
             if (_direction.x != 0)
             {

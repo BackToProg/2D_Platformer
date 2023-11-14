@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Enemy
+namespace Rival
 {
     public class EnemyPatrol : MonoBehaviour
     {
@@ -9,12 +9,12 @@ namespace Enemy
         [SerializeField] private SpriteRenderer _enemySpriteRenderer;
         [SerializeField] private EnemyAnimator _enemyAnimator;
         [SerializeField] private Enemy _enemy;
-        [SerializeField] private Player.Player _player;
-
-        private Transform[] _movementPoints;
-        private int _currentPoint;
+        [SerializeField] private Hero.Player _player;
+        
         private readonly float _patrolPointDistance = 0.01f;
         private readonly float _chaseDistanceY = 0.8f;
+        private Transform[] _movementPoints;
+        private int _currentPoint;
 
         private void Start()
         {
@@ -42,7 +42,7 @@ namespace Enemy
         {
             Transform target = _movementPoints[_currentPoint];
 
-            transform.position = Vector2.MoveTowards(transform.position, target.position, _enemy.Speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, _enemy.MovementSpeed * Time.deltaTime);
             float distance = Vector2.Distance(transform.position, target.position);
             _enemyAnimator.ActivateWalkAnimation(true);
 
@@ -63,7 +63,7 @@ namespace Enemy
         {
             _enemySpriteRenderer.flipX = IsFlipX(_player.transform);
             transform.position =
-                Vector2.MoveTowards(transform.position, _player.transform.position, _enemy.ChaseSpeed() * Time.deltaTime);
+                Vector2.MoveTowards(transform.position, _player.transform.position, _enemy.ChaseSpeed * Time.deltaTime);
         }
 
         private bool IsChasePossible()
@@ -72,7 +72,7 @@ namespace Enemy
             float distanceX = Vector2.Distance(transform.position, _player.transform.position);
             float distanceY = Math.Abs(transform.position.y - _player.transform.position.y);
         
-            if (distanceX <= _enemy.ChaseDistance() && distanceY <= _chaseDistanceY)
+            if (distanceX <= _enemy.ChaseDistance && distanceY <= _chaseDistanceY)
             {
                 isPossible = true;
             }
@@ -81,7 +81,5 @@ namespace Enemy
         }
 
         private bool IsFlipX(Transform target) => target.position.x < transform.position.x;
-       
-
     }
 }

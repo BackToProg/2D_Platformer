@@ -1,7 +1,7 @@
 using Base;
 using UnityEngine;
 
-namespace Enemy
+namespace Rival
 {
     public class Enemy : Person
     {
@@ -10,13 +10,13 @@ namespace Enemy
         [SerializeField] private int _chaseDistance;
         [SerializeField] private float _chaseSpeed;
 
-        public float AttackDistance() => _attackDistance;
+        public float AttackDistance => _attackDistance;
     
-        public float ChaseSpeed() => _chaseSpeed;
+        public float ChaseSpeed => _chaseSpeed;
 
-        public float ChaseDistance() => _chaseDistance;
+        public float ChaseDistance => _chaseDistance;
 
-        public int AttackSpeed() => _attackSpeed;
+        public int AttackSpeed => _attackSpeed;
 
     }
 }

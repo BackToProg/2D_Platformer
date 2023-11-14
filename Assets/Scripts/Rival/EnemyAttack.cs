@@ -1,15 +1,15 @@
 using System.Collections;
 using Dust;
-using Player;
+using Hero;
 using UnityEngine;
 
-namespace Enemy
+namespace Rival
 {
     public class EnemyAttack : MonoBehaviour
     {
         [SerializeField] private Enemy _enemy;
         [SerializeField] private EnemyAnimator _enemyAnimator;
-        [SerializeField] private Player.Player _player;
+        [SerializeField] private Player _player;
         [SerializeField] private PlayerAnimator _playerAnimator;
         [SerializeField] private DustSpawner _dustSpawner;
 
@@ -29,7 +29,7 @@ namespace Enemy
 
         private IEnumerator Shoot()
         {
-            WaitForSeconds waitForSeconds = new WaitForSeconds(_enemy.AttackSpeed());
+            WaitForSeconds waitForSeconds = new WaitForSeconds(_enemy.AttackSpeed);
             _isAttackCoroutineRunning = true;
 
             while (IsAttackPossible())
@@ -45,7 +45,7 @@ namespace Enemy
         }
 
         private bool IsAttackPossible() =>
-            Vector2.Distance(transform.position, _player.transform.position) <= _enemy.AttackDistance();
+            Vector2.Distance(transform.position, _player.transform.position) <= _enemy.AttackDistance;
 
     }
 }
