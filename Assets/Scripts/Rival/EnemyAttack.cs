@@ -35,7 +35,7 @@ namespace Rival
             while (IsAttackPossible())
             {
                 Dust.Dust newDust = _dustSpawner.Spawn(_enemy.transform, _enemy.SpriteRenderer.flipX);
-                newDust.Init(_enemy, _player, _playerAnimator, _enemyAnimator);
+                newDust.Init(_playerAnimator, _enemyAnimator);
                 newDust.DefineMoveDirection(_enemy.SpriteRenderer.flipX);
 
                 yield return waitForSeconds;
@@ -46,6 +46,5 @@ namespace Rival
 
         private bool IsAttackPossible() =>
             Vector2.Distance(transform.position, _player.transform.position) <= _enemy.AttackDistance;
-
     }
 }

@@ -20,9 +20,9 @@ namespace Dust
             _objectFlip = objectFlip;
         }
 
-        public void Init(Enemy enemy, Player player, PlayerAnimator playerAnimator, EnemyAnimator enemyAnimator)
+        public void Init(PlayerAnimator playerAnimator, EnemyAnimator enemyAnimator)
         {
-            _damage.Init(enemy, player, playerAnimator, enemyAnimator);
+            _damage.Init(playerAnimator, enemyAnimator);
         }
     
         private void Awake()

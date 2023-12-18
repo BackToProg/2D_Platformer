@@ -1,20 +1,20 @@
-using Enviroment;
+using Environment;
 using UnityEngine;
 
 namespace Hero
 {
     public class PlayerCollectApple : MonoBehaviour
     {
-        [SerializeField] private ScoreManager _scoreManager;
+        [SerializeField] private Score _score;
         [SerializeField] private Player _player;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent(out Apple apple) && _player.InitialHealth != _player.Health)
+            if (collision.TryGetComponent(out Apple apple) && _player.Health.CurrentHealth != _player.Health.MaxHealth)
             {
-                _player.Heal(apple.HealValue);
+                _player.Health.Heal();
                 Destroy(apple.gameObject);
-                _scoreManager.IncreaseScore();
+                _score.IncreaseScore();
             }
         }
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Rival
 {
+    [RequireComponent(typeof(Health))]
     public class Enemy : Person
     {
         [SerializeField] private float _attackDistance;
@@ -17,6 +18,13 @@ namespace Rival
         public float ChaseDistance => _chaseDistance;
 
         public int AttackSpeed => _attackSpeed;
+        
+        public Health Health { get; private set; }
+
+        private void Awake()
+        {
+            Health = GetComponent<Health>();
+        }
 
     }
 }

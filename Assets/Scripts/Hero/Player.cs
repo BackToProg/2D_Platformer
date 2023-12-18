@@ -1,17 +1,16 @@
 using Base;
+using UnityEngine;
 
 namespace Hero
 {
+    [RequireComponent(typeof(Health))]
     public class Player : Person
     {
-        public void Heal(int healValue) => IncreaseHealthValue(healValue);
-
-        public int InitialHealth { get; private set; }
+        public Health Health { get; private set; }
 
         private void Awake()
         {
-            InitialHealth = Health;
+            Health = GetComponent<Health>();
         }
-
     }
 }

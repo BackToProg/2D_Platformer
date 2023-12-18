@@ -660,7 +660,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.55682623, g: 0.9150943, b: 0.7912437, a: 0}
+  m_BackGroundColor: {r: 0.6339583, g: 0.5568628, b: 0.9137255, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2758,7 +2758,7 @@ GameObject:
   - component: {fileID: 1734698632}
   - component: {fileID: 1734698633}
   m_Layer: 0
-  m_Name: ScoreManager
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3429,6 +3429,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1459852483310346009, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459852483310346009, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1930362658636487334, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
       propertyPath: _enemy
       value: 
@@ -3447,6 +3455,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5952201127873678707, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
       propertyPath: _movementSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952201127873678707, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
+      propertyPath: movementMovementSpeed
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7739445850400645652, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
@@ -3489,6 +3501,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7764386682725044753, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7764386682725044753, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8292648134303321406, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
       propertyPath: _groundColliders.Array.data[0]
       value: 
@@ -3501,6 +3521,10 @@ PrefabInstance:
       propertyPath: _groundColliders.Array.data[2]
       value: 
       objectReference: {fileID: 566014002}
+    - target: {fileID: 9148163427350046867, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
+      propertyPath: _score
+      value: 
+      objectReference: {fileID: 1734698633}
     - target: {fileID: 9148163427350046867, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
       propertyPath: _player
       value: 
@@ -3646,9 +3670,21 @@ PrefabInstance:
       propertyPath: _attackDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4563823353332006939, guid: dea80e13af6e04efe933aacbc4e072f1, type: 3}
+      propertyPath: movementMovementSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5378536061437615609, guid: dea80e13af6e04efe933aacbc4e072f1, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725047256919053739, guid: dea80e13af6e04efe933aacbc4e072f1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725047256919053739, guid: dea80e13af6e04efe933aacbc4e072f1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8046537455372055192, guid: dea80e13af6e04efe933aacbc4e072f1, type: 3}
       propertyPath: _player
