@@ -16,7 +16,12 @@ namespace Environment
             _slider.value = _health.MaxHealth;
         }
 
-        private void Update()
+        private void Start()
+        {
+            _health.OnDamage += OnDamage;
+        }
+
+        private void OnDamage()
         {
             StartCoroutine(UpdateSmoothBarValue());
         }

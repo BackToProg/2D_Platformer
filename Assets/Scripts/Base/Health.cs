@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Base
@@ -10,6 +11,8 @@ namespace Base
 
         private int _currentHealth;
 
+        public event Action OnDamage;
+
         public int CurrentHealth => _currentHealth;
         public int MaxHealth => _maxHealth;
 
@@ -21,6 +24,8 @@ namespace Base
         public void TakeDamage()
         {
             ApplyDamage(_damageValue);
+            
+            OnDamage?.Invoke();
         }
 
         public void Heal()

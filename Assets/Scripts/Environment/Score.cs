@@ -16,7 +16,7 @@ namespace Environment
 
         public void IncreaseScore()
         {
-            _score += 1;
+            _score ++;
         }
     }
 }

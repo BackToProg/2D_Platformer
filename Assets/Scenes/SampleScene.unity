@@ -3453,6 +3453,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5173391466198484806, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
+      propertyPath: _smoothSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5952201127873678707, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
       propertyPath: _movementSpeed
       value: 3
@@ -3461,6 +3465,10 @@ PrefabInstance:
       propertyPath: movementMovementSpeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6729482758031250337, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 983911488}
     - target: {fileID: 7739445850400645652, guid: 9e282a7c2e6734a47b81f855d6749b9e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.403
@@ -3654,6 +3662,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4545909576986586190, guid: dea80e13af6e04efe933aacbc4e072f1, type: 3}
+      propertyPath: _enemy
+      value: 
+      objectReference: {fileID: 2720736570192842435}
     - target: {fileID: 4563823353332006939, guid: dea80e13af6e04efe933aacbc4e072f1, type: 3}
       propertyPath: _chaseSpeed
       value: 3
@@ -3685,6 +3697,10 @@ PrefabInstance:
     - target: {fileID: 5725047256919053739, guid: dea80e13af6e04efe933aacbc4e072f1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7167554165897019644, guid: dea80e13af6e04efe933aacbc4e072f1, type: 3}
+      propertyPath: _smoothSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8046537455372055192, guid: dea80e13af6e04efe933aacbc4e072f1, type: 3}
       propertyPath: _player

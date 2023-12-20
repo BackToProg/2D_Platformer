@@ -13,6 +13,8 @@ namespace Hero
         private Vector3 _direction;
         private bool _isMoving = true;
         private bool _isGrounded;
+        private Vector3 _positiveScaleX = new Vector3(1, 1, 1);
+        private Vector3 _negativeScaleX = new Vector3(-1, 1, 1);
 
         private void Update()
         {
@@ -63,16 +65,7 @@ namespace Hero
 
         private bool IsFlying()
         {
-            bool isFlying;
-
-            if (_rigidbody.velocity.y < 0)
-            {
-                isFlying = true;
-            }
-            else
-            {
-                isFlying = false;
-            }
+            bool isFlying = _rigidbody.velocity.y < 0;
 
             return isFlying;
         }
@@ -80,13 +73,13 @@ namespace Hero
         private bool Move()
         {
             bool isMove = false;
-
             _direction = new Vector2(Input.GetAxis("Horizontal"), 0);
+            
             transform.position += _direction * (_player.MovementSpeed * Time.deltaTime);
 
             if (_direction.x != 0)
             {
-                _player.SpriteRenderer.flipX = !(_direction.x > 0);
+                _player.transform.localScale = _direction.x > 0 ? _positiveScaleX : _negativeScaleX;
                 isMove = true;
             }
 

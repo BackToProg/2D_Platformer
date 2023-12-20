@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Hero
@@ -5,6 +6,7 @@ namespace Hero
     public class PlayerAnimator : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
+        [SerializeField] private Player _player;
         
         private static readonly int IsWalk = Animator.StringToHash("IsWalk");
         private static readonly int Jump = Animator.StringToHash("Jump");
@@ -13,6 +15,16 @@ namespace Hero
         
         private bool _isWalk;
         private bool _isFlying;
+
+        private void Start()
+        {
+            _player.Health.OnDamage += OnDamage;
+        }
+
+        private void OnDamage()
+        {
+            ActivateHitAnimation();
+        }
 
         public void ActivateWalkAnimation(bool isAnimationActive)
         {
@@ -29,7 +41,7 @@ namespace Hero
             _animator.SetBool(IsFlying, isAnimationActive);
         }
 
-        public void ActivateHitAnimation()
+        private void ActivateHitAnimation()
         {
             _animator.SetTrigger(Hit);
         }

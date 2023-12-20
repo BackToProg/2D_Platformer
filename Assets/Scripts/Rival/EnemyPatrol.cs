@@ -6,15 +6,16 @@ namespace Rival
     public class EnemyPatrol : MonoBehaviour
     {
         [SerializeField] private Transform _path;
-        [SerializeField] private SpriteRenderer _enemySpriteRenderer;
         [SerializeField] private EnemyAnimator _enemyAnimator;
         [SerializeField] private Enemy _enemy;
         [SerializeField] private Hero.Player _player;
-        
+
         private readonly float _patrolPointDistance = 0.01f;
         private readonly float _chaseDistanceY = 0.8f;
         private Transform[] _movementPoints;
         private int _currentPoint;
+        private Vector3 _positiveScaleX = new Vector3(1, 1, 1);
+        private Vector3 _negativeScaleX = new Vector3(-1, 1, 1);
 
         private void Start()
         {
@@ -42,12 +43,13 @@ namespace Rival
         {
             Transform target = _movementPoints[_currentPoint];
 
-            transform.position = Vector2.MoveTowards(transform.position, target.position, _enemy.MovementSpeed * Time.deltaTime);
+            transform.position =
+                Vector2.MoveTowards(transform.position, target.position, _enemy.MovementSpeed * Time.deltaTime);
             float distance = Vector2.Distance(transform.position, target.position);
             _enemyAnimator.ActivateWalkAnimation(true);
-
-            _enemySpriteRenderer.flipX = IsFlipX(target);
-
+            
+            _enemy.transform.localScale = IsLookAtTarget(target) ? _positiveScaleX : _negativeScaleX;
+            
             if (distance < _patrolPointDistance)
             {
                 _currentPoint++;
@@ -61,7 +63,8 @@ namespace Rival
 
         private void Chase()
         {
-            _enemySpriteRenderer.flipX = IsFlipX(_player.transform);
+            _enemy.transform.localScale = IsLookAtTarget(_player.transform) ? _positiveScaleX : _negativeScaleX;
+            
             transform.position =
                 Vector2.MoveTowards(transform.position, _player.transform.position, _enemy.ChaseSpeed * Time.deltaTime);
         }
@@ -71,7 +74,7 @@ namespace Rival
             bool isPossible = false;
             float distanceX = Vector2.Distance(transform.position, _player.transform.position);
             float distanceY = Math.Abs(transform.position.y - _player.transform.position.y);
-        
+
             if (distanceX <= _enemy.ChaseDistance && distanceY <= _chaseDistanceY)
             {
                 isPossible = true;
@@ -79,7 +82,7 @@ namespace Rival
 
             return isPossible;
         }
-
-        private bool IsFlipX(Transform target) => target.position.x < transform.position.x;
+        
+        private bool IsLookAtTarget(Transform target) => target.position.x < transform.position.x;
     }
 }
