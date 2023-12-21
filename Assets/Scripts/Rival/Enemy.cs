@@ -21,6 +21,8 @@ namespace Rival
         
         public Health Health { get; private set; }
 
+        public int DamageValue => Health.DamageValue;
+
         private void Awake()
         {
             Health = GetComponent<Health>();

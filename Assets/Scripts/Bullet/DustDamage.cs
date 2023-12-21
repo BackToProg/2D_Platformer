@@ -13,14 +13,14 @@ namespace Bullet
         {
             if (collision.TryGetComponent(out Enemy enemy))
             {
-                int enemyTakeDamageValue = _player.Health.DamageValue;
+                int enemyTakeDamageValue = _player.DamageValue;
                 enemy.Health.TakeDamage(enemyTakeDamageValue);
                 Destroy(gameObject);
             }
 
             if (collision.TryGetComponent(out Player player))
             {
-                int playerTakeDamageValue = _enemy.Health.DamageValue;
+                int playerTakeDamageValue = _enemy.DamageValue;
                 player.Health.TakeDamage(playerTakeDamageValue);
                 Destroy(gameObject);
             }
