@@ -20,7 +20,7 @@ namespace Hero
         {
             _player.Health.OnDamage += OnDamage;
         }
-
+        
         private void OnDamage()
         {
             ActivateHitAnimation();

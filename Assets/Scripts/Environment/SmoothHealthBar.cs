@@ -19,6 +19,12 @@ namespace Environment
         private void Start()
         {
             _health.OnDamage += OnDamage;
+            _health.OnHeal += OnHeal;
+        }
+
+        private void OnHeal()
+        {
+            StartCoroutine(UpdateSmoothBarValue());
         }
 
         private void OnDamage()

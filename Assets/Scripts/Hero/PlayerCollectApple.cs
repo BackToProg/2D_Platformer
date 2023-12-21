@@ -12,7 +12,8 @@ namespace Hero
         {
             if (collision.TryGetComponent(out Apple apple) && _player.Health.CurrentHealth != _player.Health.MaxHealth)
             {
-                _player.Health.Heal();
+                int healValue = _player.Health.HealValue;
+                _player.Health.Heal(healValue);
                 Destroy(apple.gameObject);
                 _score.IncreaseScore();
             }

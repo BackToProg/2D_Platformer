@@ -12,38 +12,26 @@ namespace Base
         private int _currentHealth;
 
         public event Action OnDamage;
+        public event Action OnHeal;
 
         public int CurrentHealth => _currentHealth;
         public int MaxHealth => _maxHealth;
+        public int DamageValue => _damageValue;
+        public int HealValue => _healValue;
 
         private void Awake()
         {
             _currentHealth = _maxHealth;
         }
 
-        public void TakeDamage()
+        public void TakeDamage(int damage)
         {
-            ApplyDamage(_damageValue);
-            
-            OnDamage?.Invoke();
-        }
-
-        public void Heal()
-        {
-            ApplyHeal(_healValue);
-        }
-
-        private void ApplyDamage(int damage)
-        {
-            _currentHealth -= damage;
-
-            if (_currentHealth < 0)
-            {
-                _currentHealth = 0;
-            }
+            _currentHealth = Math.Max(0, _currentHealth - damage);
 
             if (_currentHealth == 0)
                 Die();
+
+            OnDamage?.Invoke();
         }
 
         private void Die()
@@ -51,14 +39,11 @@ namespace Base
             Destroy(gameObject);
         }
 
-        private void ApplyHeal(int healValue)
+        public void Heal(int healValue)
         {
-            _currentHealth += healValue;
+            _currentHealth = Math.Min(_maxHealth, _currentHealth + healValue);
 
-            if (_currentHealth > _maxHealth)
-            {
-                _currentHealth = _maxHealth;
-            }
+            OnHeal?.Invoke();
         }
     }
 }

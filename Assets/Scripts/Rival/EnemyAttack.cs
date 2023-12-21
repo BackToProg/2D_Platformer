@@ -35,6 +35,7 @@ namespace Rival
                 Vector3 localScale = _player.transform.localScale;
                 
                 Dust newDust = _dustSpawner.Spawn(_enemy.transform, localScale.x);
+                newDust.Init(_player, _enemy);
                 newDust.DefineMoveDirection(localScale.x);
 
                 yield return waitForSeconds;
